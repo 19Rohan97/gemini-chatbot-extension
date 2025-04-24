@@ -1,8 +1,4 @@
 (async function () {
-  //   const API_KEY = "AIzaSyBeOtMzTyZSYoyFi4ohf7SX7JaBt_mqv2A";
-
-  let API_KEY = "";
-
   function requestApiKey() {
     return new Promise((resolve) => {
       const requestId = Date.now();
