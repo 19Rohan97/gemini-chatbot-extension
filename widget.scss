@@ -1,0 +1,219 @@
+$gemini-blue: #4285f4;
+$gemini-white: #ffffff;
+$gemini-black: #000000;
+$gemini-border: #cccccc;
+$user-color: #e0f7fa;
+$gemini-color: #f1f1f1;
+
+#gemini-widget-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 500px;
+  height: calc(100vh - 150px);
+  z-index: 99999;
+}
+
+#gemini-widget {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  font-family: Arial;
+
+  #gemini-header {
+    background: $gemini-blue;
+    color: $gemini-white;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+
+    span {
+      flex: 1;
+    }
+
+    #gemini-close-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 0 8px;
+      line-height: 1;
+    }
+
+    #gemini-clear-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 0 6px;
+    }
+  }
+
+  #gemini-log {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 14px;
+    background-color: $gemini-white;
+    color: $gemini-black;
+
+    code {
+      background-color: #f0f0f0;
+      font-family: monospace;
+      padding: 2px 4px;
+      border-radius: 4px;
+      color: #000;
+    }
+
+    pre {
+      background-color: #f0f0f0;
+      padding: 8px;
+      overflow-x: auto;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    p {
+      margin: 10px 0 5px;
+    }
+  }
+
+  #gemini-controls {
+    display: flex;
+    border-top: 1px solid $gemini-border;
+
+    #gemini-input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      color: $gemini-black;
+      background: $gemini-white;
+    }
+
+    #gemini-send {
+      background: $gemini-blue;
+      color: $gemini-white;
+      padding: 0 20px;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  .chat_msg {
+    display: flex;
+    gap: 8px;
+    margin: 8px;
+    max-width: 100%;
+    animation: slideIn 0.3s ease-out;
+
+    &.user_msg {
+      flex-direction: row-reverse;
+      align-self: flex-end;
+
+      .msg_bubble {
+        background: $user-color;
+      }
+    }
+
+    &.gemini_msg {
+      flex-direction: row;
+      align-self: flex-start;
+
+      .msg_bubble {
+        background: $gemini-color;
+        max-width: calc(100% - 75px);
+      }
+    }
+
+    .msg_bubble {
+      border-radius: 8px;
+      padding: 8px 12px;
+
+      .msg_sender {
+        font-weight: bold;
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+
+      .msg_text {
+        font-size: 14px;
+      }
+
+      .msg_time {
+        font-size: 11px;
+        color: gray;
+        text-align: right;
+        margin-top: 4px;
+      }
+    }
+
+    .avatar {
+      font-size: 22px;
+      padding-top: 4px;
+    }
+  }
+}
+
+#gemini-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background: #4285f4;
+  color: $gemini-white;
+  font-size: 24px;
+  text-align: center;
+  line-height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 99998;
+}
+
+.typing_placeholder {
+  .msg_text {
+    font-style: italic;
+    color: gray;
+    animation: blink 1s infinite;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
